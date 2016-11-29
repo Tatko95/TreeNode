@@ -30,17 +30,17 @@ function Node(parent, data) {
 }
 
 Tree.prototype.forEach = function (callback) {
-    GoNext(callback, this.root);
+  goNext(callback, this.root);
 }
 
-function GoNext(callback, node, stopNode) {
-    callback(node);
-    if (node.next != null && node != stopNode) {
-        GoNext(callback, node.next, stopNode == null ? node : stopNode);
-    }
-    if (node.first != null) {
-        GoNext(callback, node.first);
-    }
+function goNext(callback, node, stopNode) {
+  callback(node);
+  if (node.next !== null && node !== stopNode) {
+    goNext(callback, node.next, stopNode === null ? node : stopNode);
+  }
+  if (node.first !== null) {
+    goNext(callback, node.first);
+  }
 }
 
 let tree = new Tree({ name: 'root' });
@@ -51,5 +51,5 @@ let n3 = new Node(tree.root, { name: 'n3' });
 console.dir(tree, { depth: null });
 
 tree.forEach(function (node) {
-    console.log(node.data);
+  console.log(node.data);
 });
